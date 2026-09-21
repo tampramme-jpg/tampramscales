@@ -1,0 +1,197 @@
+<!-- GLOBAL FOOTER START -->
+<footer id="tps-footer">
+  <style>
+    #tps-footer {
+      --tps-black: #000000; 
+      --tps-white: #ffffff; 
+      --tps-green: #66ff00;
+      --tps-charcoal-1: #0a0a0a; 
+      --tps-charcoal-2: #111111; 
+      --tps-charcoal-3: #161616; 
+      --tps-border: rgba(255,255,255,0.15); 
+      --tps-border-hover: rgba(102,255,0,0.6);
+      --tps-max: 1600px; 
+      --tps-gutter: clamp(20px, 5vw, 64px);
+      --tps-ease: cubic-bezier(0.22,1,0.36,1);
+      --tps-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--tps-charcoal-1); 
+      color: var(--tps-white); 
+      font-family: var(--tps-font);
+      border-top: 1px solid var(--tps-border);
+    }
+    #tps-footer * { box-sizing: border-box; }
+    #tps-footer a { color: var(--tps-white); text-decoration: none; }
+    #tps-footer .tps-footer-container { max-width: var(--tps-max); margin: 0 auto; padding: clamp(48px,7vw,80px) var(--tps-gutter) 0; }
+    
+    #tps-footer .tps-footer-top { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: clamp(28px,5vw,40px); padding-bottom: clamp(40px,6vw,56px); }
+
+    #tps-footer .tps-footer-logo { display: flex; align-items: center; margin-bottom: 16px; }
+    
+    #tps-footer .tps-service-location { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      font-size: 13px; 
+      font-weight: 700; 
+      color: var(--tps-green); 
+      background: rgba(102, 255, 0, 0.08); 
+      border: 1px solid rgba(102, 255, 0, 0.25); 
+      padding: 6px 12px; 
+      border-radius: 6px; 
+      margin-bottom: 20px; 
+      text-transform: uppercase; 
+      letter-spacing: 0.05em; 
+    }
+
+    #tps-footer .tps-footer-blurb { font-size: 14px; color: var(--tps-white); line-height: 1.7; max-width: 320px; margin-bottom: 22px; opacity: 0.95; }
+
+    #tps-footer .tps-social-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
+    
+    #tps-footer .tps-social-icon, #tps-footer .tps-footer-wa-btn {
+      height: 38px; border-radius: 10px; border: 1px solid var(--tps-border); background: var(--tps-charcoal-2);
+      display: flex; align-items: center; justify-content: center; transition: all .3s var(--tps-ease);
+      color: var(--tps-white); text-decoration: none;
+    }
+    
+    #tps-footer .tps-social-icon { width: 38px; }
+    
+    #tps-footer .tps-footer-wa-btn {
+      background-color: #25D366;
+      border-color: #25D366;
+      color: #ffffff;
+      padding: 0 14px;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    
+    #tps-footer .tps-footer-wa-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+      color: #ffffff;
+    }
+    
+    #tps-footer .tps-social-icon:hover { border-color: var(--tps-border-hover); color: var(--tps-green); transform: translateY(-3px); }
+    #tps-footer .tps-social-icon svg { width: 16px; height: 16px; }
+
+    #tps-footer .tps-footer-heading { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--tps-white); margin-bottom: 20px; }
+    
+    #tps-footer .tps-footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 13px; }
+    #tps-footer .tps-footer-links a { font-size: 14px; color: var(--tps-white); opacity: 0.9; transition: color .25s var(--tps-ease), padding-left .25s var(--tps-ease), opacity .25s ease; display: inline-block; }
+    #tps-footer .tps-footer-links a:hover { color: var(--tps-green); opacity: 1; padding-left: 4px; }
+
+    #tps-footer .tps-contact-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--tps-white); margin-bottom: 16px; opacity: 0.95; }
+    #tps-footer .tps-contact-item svg { width: 16px; height: 16px; color: var(--tps-green); flex-shrink: 0; margin-top: 2px; }
+    #tps-footer .tps-contact-item a { color: var(--tps-white); }
+    #tps-footer .tps-contact-item a:hover { color: var(--tps-green); }
+
+    #tps-footer .tps-footer-bottom {
+      border-top: 1px solid var(--tps-border); padding: 22px var(--tps-gutter);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      max-width: var(--tps-max); margin: 0 auto; font-size: 13px; color: var(--tps-white); opacity: 0.9;
+    }
+    
+    #tps-footer .tps-footer-bottom-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    #tps-footer .tps-footer-bottom-links a { color: var(--tps-white); }
+    #tps-footer .tps-footer-bottom-links a:hover { color: var(--tps-green); }
+    #tps-footer .tps-footer-credit a { color: var(--tps-white); }
+    #tps-footer .tps-footer-credit a:hover { color: var(--tps-green); }
+
+    @media (max-width: 900px) {
+      #tps-footer .tps-footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      #tps-footer .tps-footer-top { grid-template-columns: 1fr; }
+      #tps-footer .tps-footer-bottom { flex-direction: column; align-items: flex-start; text-align: left; }
+    }
+  </style>
+
+  <div class="tps-footer-container">
+    <div class="tps-footer-top">
+
+      <!-- Brand column with official logo asset & Worldwide badge -->
+      <div>
+        <a href="/" class="tps-footer-logo">
+          <svg width="170" height="42" viewBox="0 0 520 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42 22L12 37L42 52L72 37L42 22Z" fill="#66FF00"/>
+            <text x="95" y="65" font-family="Inter, sans-serif" font-weight="800" font-size="46" fill="#FFFFFF">TamPram<tspan fill="#66FF00">Scale</tspan></text>
+            <text x="96" y="98" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="#FFFFFF" opacity="0.9" letter-spacing="4">DIGITAL GROWTH AGENCY</text>
+          </svg>
+        </a>
+        
+        <div class="tps-service-location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          Serving Clients Worldwide
+        </div>
+
+        <p class="tps-footer-blurb">A digital growth agency helping businesses build, automate, and grow through websites, marketing, design, automation, and AI.</p>
+        
+        <div class="tps-social-row" aria-label="Social media and WhatsApp">
+          <a href="https://wa.me/919002872727?text=Hello%20TamPramScale,%20I%20would%20like%20to%20know%20more%20about%20your%20digital%20services." target="_blank" rel="noopener noreferrer" class="tps-footer-wa-btn" aria-label="Chat on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.612-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            WhatsApp
+          </a>
+          <a href="#" class="tps-social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3.5h-3V7.7c0-1 .3-1.7 1.7-1.7H16.6V2.8C16.3 2.8 15.3 2.7 14.2 2.7c-2.4 0-4 1.5-4 4.2V10H7.7v3.5h2.5V21h3.3z"/></svg></a>
+          <a href="#" class="tps-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" class="tps-social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.9V21H18v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3v5.7H10V9z"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="tps-footer-heading">Quick Links</div>
+        <ul class="tps-footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <div class="tps-footer-heading">Our Services</div>
+        <ul class="tps-footer-links">
+          <li><a href="/web-designing">Web Designing</a></li>
+          <li><a href="/web-development">Web Development</a></li>
+          <li><a href="/seo">SEO</a></li>
+          <li><a href="/digital-marketing">Digital Marketing</a></li>
+          <li><a href="/graphics-designing">Graphics Designing</a></li>
+          <li><a href="/ai-automation">AI Automation</a></li>
+          <li><a href="/ai-agent">AI Agent</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="tps-footer-heading">Contact</div>
+        <div class="tps-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <a href="mailto:tampram.me@gmail.com">tampram.me@gmail.com</a>
+        </div>
+        <div class="tps-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+919002872727">+91 90028 72727</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tps-footer-bottom">
+    <div class="tps-footer-credit">© <span id="tps-footer-year">2026</span> TamPramScale. All rights reserved.</div>
+    <div class="tps-footer-bottom-links">
+      <a href="/">Home</a>
+      <a href="/about-us">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var yearEl = document.getElementById('tps-footer-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+  </script>
+</footer>
+<!-- GLOBAL FOOTER END -->
