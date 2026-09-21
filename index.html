@@ -1,0 +1,2250 @@
+<!-- GLOBAL HEADER PROVIDED SEPARATELY -->
+
+<!-- HOME PAGE START -->
+<div class="tps-homepage-wrapper" id="main-content">
+  <!-- CSS Stylesheet -->
+  <style>
+    /* ==========================================================
+       TAMPRAMSCALE DESIGN SYSTEM & TOKENS
+       ========================================================== */
+    :root {
+      --tps-black: #000000;
+      --tps-white: #FFFFFF;
+      --tps-neon: #66FF00;
+      --tps-dark-01: #0A0A0A;
+      --tps-dark-02: #111111;
+      --tps-dark-03: #161616;
+      --tps-dark-04: #222222;
+      --tps-gray-text: #A3A3A3;
+      --tps-border-color: rgba(102, 255, 0, 0.15);
+      --tps-border-subtle: rgba(255, 255, 0, 0.08);
+      --tps-transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --tps-font-sans: 'Inter', 'Plus Jakarta Sans', 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* Reset & Base Scoped to Homepage Container */
+    .tps-homepage-wrapper {
+      background-color: var(--tps-black);
+      color: var(--tps-white);
+      font-family: var(--tps-font-sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .tps-homepage-wrapper *, 
+    .tps-homepage-wrapper *::before, 
+    .tps-homepage-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    /* Utility Containers */
+    .tps-full-section {
+      width: 100%;
+      position: relative;
+    }
+
+    .tps-container {
+      width: min(1600px, calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .tps-container {
+        width: min(1600px, calc(100% - 80px));
+      }
+    }
+
+    /* Typography Utilities */
+    .tps-section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--tps-neon);
+      margin-bottom: 16px;
+      padding: 6px 14px;
+      background: rgba(102, 255, 0, 0.06);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 50px;
+    }
+
+    .tps-heading-1 {
+      font-size: clamp(2.5rem, 5vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--tps-white);
+      margin: 0 0 24px 0;
+    }
+
+    .tps-heading-2 {
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--tps-white);
+      margin: 0 0 20px 0;
+    }
+
+    .tps-heading-2 span, .tps-heading-1 span {
+      color: var(--tps-neon);
+    }
+
+    .tps-text-lead {
+      font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      color: var(--tps-gray-text);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    /* Buttons */
+    .tps-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 32px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--tps-transition);
+      white-space: nowrap;
+    }
+
+    .tps-btn-primary {
+      background-color: var(--tps-neon);
+      color: var(--tps-black);
+      border: 1px solid var(--tps-neon);
+      box-shadow: 0 0 20px rgba(102, 255, 0, 0.25);
+    }
+
+    .tps-btn-primary:hover {
+      background-color: #55db00;
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(102, 255, 0, 0.4);
+    }
+
+    .tps-btn-secondary {
+      background-color: transparent;
+      color: var(--tps-white);
+      border: 1px solid rgba(255, 255, 0, 0.25);
+    }
+
+    .tps-btn-secondary:hover {
+      border-color: var(--tps-neon);
+      color: var(--tps-neon);
+      transform: translateY(-3px);
+      background-color: rgba(102, 255, 0, 0.03);
+    }
+
+    /* Cards Common */
+    .tps-card {
+      background-color: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px 32px;
+      transition: var(--tps-transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tps-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--tps-neon), transparent);
+      opacity: 0;
+      transition: var(--tps-transition);
+    }
+
+    .tps-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--tps-neon);
+      box-shadow: 0 10px 30px -10px rgba(102, 255, 0, 0.2);
+    }
+
+    .tps-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Scroll Reveal Base */
+    .tps-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tps-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================
+       1. HERO SECTION
+       ========================================================== */
+    .tps-hero {
+      padding: 80px 0 100px 0;
+      background: radial-gradient(circle at 80% 20%, rgba(102, 255, 0, 0.07) 0%, transparent 40%),
+                  radial-gradient(circle at 10% 80%, rgba(102, 255, 0, 0.03) 0%, transparent 50%);
+    }
+
+    .tps-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .tps-hero-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 80px;
+      }
+    }
+
+    .tps-hero-content .tps-heading-1 {
+      margin-bottom: 24px;
+    }
+
+    .tps-hero-content .tps-heading-1 span {
+      display: inline-block;
+    }
+
+    .tps-hero-subtext {
+      font-size: 1.1rem;
+      color: var(--tps-gray-text);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .tps-hero-subtext strong {
+      color: var(--tps-white);
+      font-weight: 600;
+    }
+
+    .tps-hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Hero Visual Composition */
+    .tps-hero-visual {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(102, 255, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .tps-hero-glow {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(102, 255, 0, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 1;
+      animation: tpsGlowPulse 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes tpsGlowPulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.3); opacity: 1; }
+    }
+
+    .tps-hero-dashboard {
+      position: relative;
+      z-index: 2;
+      width: 85%;
+      height: 75%;
+      background: var(--tps-dark-02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      animation: tpsFloatVisual 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes tpsFloatVisual {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+
+    .tps-dashboard-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--tps-dark-03);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .tps-dashboard-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tps-dashboard-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .tps-dashboard-dots span:nth-child(1) { background: #ff5f56; }
+    .tps-dashboard-dots span:nth-child(2) { background: #ffbd2e; }
+    .tps-dashboard-dots span:nth-child(3) { background: #27c93f; }
+
+    .tps-dashboard-title {
+      font-size: 0.75rem;
+      color: var(--tps-gray-text);
+      font-family: monospace;
+    }
+
+    .tps-dashboard-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .tps-dashboard-card-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .tps-mini-widget {
+      background: var(--tps-dark-03);
+      border: 1px solid rgba(102, 255, 0, 0.1);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .tps-mini-widget-label {
+      font-size: 0.7rem;
+      color: var(--tps-gray-text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tps-mini-widget-val {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--tps-neon);
+      margin-top: 4px;
+    }
+
+    .tps-dashboard-graph {
+      background: var(--tps-dark-03);
+      border-radius: 8px;
+      height: 90px;
+      padding: 12px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .tps-bar {
+      flex: 1;
+      background: rgba(102, 255, 0, 0.2);
+      border-radius: 4px 4px 0 0;
+      transition: height 1s ease;
+    }
+    .tps-bar:nth-child(odd) { background: var(--tps-neon); }
+
+    /* Floating Brand Logo Badge in Hero */
+    .tps-hero-logo-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--tps-dark-03);
+      border: 1px solid var(--tps-neon);
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tps-hero-logo-badge img {
+      height: 28px;
+      width: auto;
+    }
+
+    .tps-hero-logo-badge span {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--tps-white);
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================
+       2. SERVICE STRIP (MARQUEE)
+       ========================================================== */
+    .tps-service-strip {
+      background-color: var(--tps-dark-02);
+      border-top: 1px solid rgba(102, 255, 0, 0.15);
+      border-bottom: 1px solid rgba(102, 255, 0, 0.15);
+      padding: 20px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .tps-marquee-track {
+      display: inline-flex;
+      gap: 40px;
+      animation: tpsMarquee 35s linear infinite;
+    }
+
+    .tps-service-strip:hover .tps-marquee-track {
+      animation-play-state: paused;
+    }
+
+    .tps-marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 40px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--tps-white);
+    }
+
+    .tps-marquee-item span {
+      color: var(--tps-neon);
+    }
+
+    @keyframes tpsMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tps-marquee-track {
+        animation: none;
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ==========================================================
+       3. VALUE PROPOSITION
+       ========================================================== */
+    .tps-value-prop {
+      padding: 120px 0;
+      background-color: var(--tps-black);
+    }
+
+    .tps-section-header {
+      max-width: 800px;
+      margin-bottom: 70px;
+    }
+
+    .tps-value-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .tps-value-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .tps-value-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .tps-value-card {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 36px 28px;
+      transition: var(--tps-transition);
+      position: relative;
+    }
+
+    .tps-value-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--tps-neon);
+      box-shadow: 0 10px 30px rgba(102, 255, 0, 0.15);
+    }
+
+    .tps-value-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--tps-neon);
+      margin-bottom: 16px;
+      font-family: monospace;
+    }
+
+    .tps-value-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--tps-white);
+    }
+
+    .tps-value-card p {
+      font-size: 0.95rem;
+      color: var(--tps-gray-text);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ==========================================================
+       4. SERVICES SECTION
+       ========================================================== */
+    .tps-services {
+      padding: 120px 0;
+      background-color: var(--tps-dark-02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tps-services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .tps-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .tps-services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .tps-service-card {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--tps-transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tps-service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--tps-neon);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .tps-service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--tps-neon);
+      box-shadow: 0 15px 40px rgba(102, 255, 0, 0.15);
+    }
+
+    .tps-service-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .tps-service-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(102, 255, 0, 0.08);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--tps-neon);
+      font-size: 1.5rem;
+      transition: var(--tps-transition);
+    }
+
+    .tps-service-card:hover .tps-service-icon {
+      background: var(--tps-neon);
+      color: var(--tps-black);
+      transform: scale(1.05);
+    }
+
+    .tps-service-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--tps-white);
+    }
+
+    .tps-service-card p {
+      font-size: 0.95rem;
+      color: var(--tps-gray-text);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .tps-service-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tps-service-features li {
+      font-size: 0.85rem;
+      color: var(--tps-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tps-service-features li::before {
+      content: '—';
+      color: var(--tps-neon);
+      font-weight: 700;
+    }
+
+    .tps-service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--tps-neon);
+      text-decoration: none;
+      transition: var(--tps-transition);
+    }
+
+    .tps-service-link span {
+      transition: transform 0.3s ease;
+    }
+
+    .tps-service-card:hover .tps-service-link span {
+      transform: translateX(6px);
+    }
+
+    /* ==========================================================
+       5. WHY TAMPRAMSCALE (SPLIT SECTION)
+       ========================================================== */
+    .tps-why-us {
+      padding: 120px 0;
+      background-color: var(--tps-black);
+    }
+
+    .tps-why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .tps-why-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+    }
+
+    .tps-why-visual {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 24px;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+      min-height: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .tps-why-visual-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(102, 255, 0, 0.05) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(102, 255, 0, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .tps-why-center-badge {
+      position: relative;
+      z-index: 2;
+      background: var(--tps-dark-03);
+      border: 1px solid var(--tps-neon);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(102, 255, 0, 0.2);
+    }
+
+    .tps-why-center-badge img {
+      height: 40px;
+      width: auto;
+      margin-bottom: 12px;
+    }
+
+    .tps-why-center-badge h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--tps-white);
+      margin: 0;
+    }
+
+    .tps-why-benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .tps-why-benefit-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .tps-why-benefit-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(102, 255, 0, 0.08);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tps-neon);
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .tps-why-benefit-text h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: var(--tps-white);
+    }
+
+    .tps-why-benefit-text p {
+      font-size: 0.9rem;
+      color: var(--tps-gray-text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================
+       6. ABOUT / BRAND INTRO
+       ========================================================== */
+    .tps-about-intro {
+      padding: 120px 0;
+      background-color: var(--tps-dark-02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .tps-about-content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tps-about-highlight-box {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      padding: 30px;
+      border-radius: 12px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--tps-neon);
+      margin: 36px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* ==========================================================
+       7. OUR PROCESS TIMELINE
+       ========================================================== */
+    .tps-process {
+      padding: 120px 0;
+      background-color: var(--tps-black);
+    }
+
+    .tps-process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    @media (min-width: 1024px) {
+      .tps-process-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .tps-process-card {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px 24px;
+      position: relative;
+      transition: var(--tps-transition);
+    }
+
+    .tps-process-card:hover {
+      border-color: var(--tps-neon);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 255, 0, 0.15);
+    }
+
+    .tps-process-step {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--tps-neon);
+      margin-bottom: 16px;
+      font-family: monospace;
+    }
+
+    .tps-process-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--tps-white);
+    }
+
+    .tps-process-card p {
+      font-size: 0.85rem;
+      color: var(--tps-gray-text);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ==========================================================
+       8. AI SECTION
+       ========================================================== */
+    .tps-ai-section {
+      padding: 120px 0;
+      background: radial-gradient(circle at 50% 50%, rgba(102, 255, 0, 0.08) 0%, var(--tps-dark-02) 70%);
+      border-top: 1px solid rgba(102, 255, 0, 0.15);
+      border-bottom: 1px solid rgba(102, 255, 0, 0.15);
+    }
+
+    .tps-ai-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    @media (min-width: 1024px) {
+      .tps-ai-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .tps-ai-card {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 16px;
+      padding: 40px 32px;
+      transition: var(--tps-transition);
+    }
+
+    .tps-ai-card:hover {
+      border-color: var(--tps-neon);
+      transform: translateY(-6px);
+      box-shadow: 0 0 35px rgba(102, 255, 0, 0.2);
+    }
+
+    .tps-ai-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--tps-white);
+      margin-bottom: 14px;
+    }
+
+    .tps-ai-card p {
+      font-size: 0.95rem;
+      color: var(--tps-gray-text);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ==========================================================
+       9. WEBSITE + SEO SECTION
+       ========================================================== */
+    .tps-web-seo {
+      padding: 120px 0;
+      background-color: var(--tps-black);
+    }
+
+    .tps-web-seo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .tps-web-seo-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .tps-checklist {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    @media (min-width: 600px) {
+      .tps-checklist {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .tps-check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--tps-white);
+    }
+
+    .tps-check-icon {
+      width: 24px;
+      height: 24px;
+      background: rgba(102, 255, 0, 0.15);
+      color: var(--tps-neon);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .tps-browser-mockup {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .tps-browser-header {
+      background: var(--tps-dark-03);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tps-browser-address {
+      background: var(--tps-black);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      color: var(--tps-gray-text);
+      flex: 1;
+      font-family: monospace;
+    }
+
+    .tps-browser-body {
+      padding: 40px 30px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 50%, rgba(102, 255, 0, 0.05) 0%, transparent 70%);
+    }
+
+    /* ==========================================================
+       10. DIGITAL GROWTH ECOSYSTEM (DIAGRAM)
+       ========================================================== */
+    .tps-ecosystem {
+      padding: 120px 0;
+      background-color: var(--tps-dark-02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .tps-eco-flow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 60px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tps-eco-node {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(102, 255, 0, 0.25);
+      border-radius: 12px;
+      padding: 20px 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--tps-white);
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: var(--tps-transition);
+    }
+
+    .tps-eco-node:hover {
+      border-color: var(--tps-neon);
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(102, 255, 0, 0.3);
+    }
+
+    .tps-eco-arrow {
+      color: var(--tps-neon);
+      font-size: 1.2rem;
+      animation: tpsBounceArrow 2s infinite ease-in-out;
+    }
+
+    @keyframes tpsBounceArrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ==========================================================
+       11. WHO WE HELP
+       ========================================================== */
+    .tps-who-we-help {
+      padding: 120px 0;
+      background-color: var(--tps-black);
+    }
+
+    .tps-who-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    @media (min-width: 768px) {
+      .tps-who-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .tps-who-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .tps-who-card {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 36px 28px;
+      transition: var(--tps-transition);
+    }
+
+    .tps-who-card:hover {
+      border-color: var(--tps-neon);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 255, 0, 0.15);
+    }
+
+    .tps-who-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--tps-white);
+      margin-bottom: 12px;
+    }
+
+    .tps-who-card p {
+      font-size: 0.95rem;
+      color: var(--tps-gray-text);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ==========================================================
+       12. BENEFITS SECTION
+       ========================================================== */
+    .tps-benefits {
+      padding: 120px 0;
+      background-color: var(--tps-dark-02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tps-benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    @media (min-width: 768px) {
+      .tps-benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .tps-benefits-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .tps-benefit-card {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: var(--tps-transition);
+    }
+
+    .tps-benefit-card:hover {
+      border-color: var(--tps-neon);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(102, 255, 0, 0.15);
+    }
+
+    .tps-benefit-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(102, 255, 0, 0.1);
+      border: 1px solid rgba(102, 255, 0, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tps-neon);
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    .tps-benefit-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--tps-white);
+      margin: 0;
+    }
+
+    /* ==========================================================
+       13. TECHNOLOGY STACK
+       ========================================================== */
+    .tps-tech {
+      padding: 120px 0;
+      background-color: var(--tps-black);
+      text-align: center;
+    }
+
+    .tps-tech-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 60px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 768px) {
+      .tps-tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .tps-tech-card {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--tps-white);
+      transition: var(--tps-transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .tps-tech-card:hover {
+      border-color: var(--tps-neon);
+      color: var(--tps-neon);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(102, 255, 0, 0.15);
+    }
+
+    /* ==========================================================
+       14. FAQ ACCORDION
+       ========================================================== */
+    .tps-faq {
+      padding: 120px 0;
+      background-color: var(--tps-dark-02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tps-faq-wrapper {
+      max-width: 900px;
+      margin: 60px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tps-faq-item {
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--tps-transition);
+    }
+
+    .tps-faq-item.active {
+      border-color: var(--tps-neon);
+      box-shadow: 0 10px 30px rgba(102, 255, 0, 0.15);
+    }
+
+    .tps-faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 28px;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--tps-white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 20px;
+    }
+
+    .tps-faq-question:hover {
+      color: var(--tps-neon);
+    }
+
+    .tps-faq-icon {
+      width: 30px;
+      height: 30px;
+      background: rgba(102, 255, 0, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tps-neon);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .tps-faq-item.active .tps-faq-icon {
+      transform: rotate(45deg);
+      background: var(--tps-neon);
+      color: var(--tps-black);
+    }
+
+    .tps-faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+      padding: 0 28px;
+      font-size: 0.95rem;
+      color: var(--tps-gray-text);
+      line-height: 1.7;
+    }
+
+    .tps-faq-item.active .tps-faq-answer {
+      max-height: 300px;
+      padding: 0 28px 24px 28px;
+    }
+
+    /* ==========================================================
+       15. FINAL CTA SECTION
+       ========================================================== */
+    .tps-final-cta {
+      padding: 140px 0;
+      background: radial-gradient(circle at 50% 50%, rgba(102, 255, 0, 0.12) 0%, var(--tps-black) 80%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tps-final-cta-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--tps-dark-01);
+      border: 1px solid rgba(102, 255, 0, 0.3);
+      border-radius: 24px;
+      padding: 80px 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 50px rgba(102, 255, 0, 0.1);
+      position: relative;
+    }
+
+    /* ==========================================================
+       16. CONTACT TEASER SECTION
+       ========================================================== */
+    .tps-contact-teaser {
+      padding: 100px 0;
+      background-color: var(--tps-dark-02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    /* ==========================================================
+       17. FLOATING WHATSAPP CHATBOT
+       ========================================================== */
+    .tps-whatsapp-widget {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: var(--tps-font-sans);
+    }
+
+    .tps-wa-tooltip {
+      background: var(--tps-dark-01);
+      border: 1px solid var(--tps-neon);
+      color: var(--tps-white);
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .tps-wa-tooltip.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tps-wa-btn {
+      width: 65px;
+      height: 65px;
+      background-color: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--tps-transition);
+      position: relative;
+      border: 2px solid var(--tps-white);
+    }
+
+    .tps-wa-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+    }
+
+    .tps-wa-btn svg {
+      width: 34px;
+      height: 34px;
+      fill: #FFFFFF;
+    }
+
+    .tps-wa-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 18px;
+      height: 18px;
+      background-color: var(--tps-neon);
+      border: 2px solid var(--tps-black);
+      border-radius: 50%;
+      animation: tpsWaPulse 2s infinite;
+    }
+
+    @keyframes tpsWaPulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(102, 255, 0, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(102, 255, 0, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(102, 255, 0, 0); }
+    }
+  </style>
+
+  <!-- ==========================================================
+     1. HERO SECTION
+     ========================================================== -->
+  <section class="tps-full-section tps-hero">
+    <div class="tps-container">
+      <div class="tps-hero-grid">
+        <div class="tps-hero-content tps-reveal">
+          <div class="tps-section-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Digital Growth Agency
+          </div>
+          <h1 class="tps-heading-1">
+            Build.<br>
+            Automate.<br>
+            <span>Grow.</span>
+          </h1>
+          <p class="tps-hero-subtext">
+            “We help businesses build powerful digital experiences, improve their online visibility, automate repetitive tasks, and use AI to work smarter.”<br><br>
+            <strong>Web Design, Development, SEO, Digital Marketing, Graphics, AI Automation & AI Agents.</strong>
+          </p>
+          <div class="tps-hero-btns">
+            <a href="/contact" class="tps-btn tps-btn-primary">
+              Get Started 
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="/web-designing" class="tps-btn tps-btn-secondary">
+              Explore Our Services 
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="tps-hero-visual tps-reveal">
+          <div class="tps-hero-glow"></div>
+          <div class="tps-hero-dashboard">
+            <div class="tps-dashboard-topbar">
+              <div class="tps-dashboard-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="tps-dashboard-title">TamPramScale.com — Enterprise Engine</div>
+            </div>
+            <div class="tps-dashboard-body">
+              <div class="tps-dashboard-card-row">
+                <div class="tps-mini-widget">
+                  <div class="tps-mini-widget-label">System Efficiency</div>
+                  <div class="tps-mini-widget-val">+340%</div>
+                </div>
+                <div class="tps-mini-widget">
+                  <div class="tps-mini-widget-label">AI Automation</div>
+                  <div class="tps-mini-widget-val">Active 24/7</div>
+                </div>
+              </div>
+              <div class="tps-dashboard-graph">
+                <div class="tps-bar" style="height: 45%;"></div>
+                <div class="tps-bar" style="height: 65%;"></div>
+                <div class="tps-bar" style="height: 50%;"></div>
+                <div class="tps-bar" style="height: 80%;"></div>
+                <div class="tps-bar" style="height: 95%;"></div>
+                <div class="tps-bar" style="height: 100%;"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Official TamPramScale Logo integration in Hero Visual -->
+          <div class="tps-hero-logo-badge">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=60" alt="TamPramScale Logo" style="display:none;" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#66FF00" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            <span>TamPramScale</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     2. SERVICE STRIP
+     ========================================================== -->
+  <div class="tps-full-section tps-service-strip">
+    <div class="tps-marquee-track">
+      <div class="tps-marquee-item">Web Design <span>•</span></div>
+      <div class="tps-marquee-item">Web Development <span>•</span></div>
+      <div class="tps-marquee-item">SEO <span>•</span></div>
+      <div class="tps-marquee-item">Digital Marketing <span>•</span></div>
+      <div class="tps-marquee-item">Graphics Design <span>•</span></div>
+      <div class="tps-marquee-item">AI Automation <span>•</span></div>
+      <div class="tps-marquee-item">AI Agents <span>•</span></div>
+      <!-- Duplicate for infinite seamless loop -->
+      <div class="tps-marquee-item">Web Design <span>•</span></div>
+      <div class="tps-marquee-item">Web Development <span>•</span></div>
+      <div class="tps-marquee-item">SEO <span>•</span></div>
+      <div class="tps-marquee-item">Digital Marketing <span>•</span></div>
+      <div class="tps-marquee-item">Graphics Design <span>•</span></div>
+      <div class="tps-marquee-item">AI Automation <span>•</span></div>
+      <div class="tps-marquee-item">AI Agents <span>•</span></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+     3. VALUE PROPOSITION
+     ========================================================== -->
+  <section class="tps-full-section tps-value-prop">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal">
+        <div class="tps-section-label">Why TamPramScale</div>
+        <h2 class="tps-heading-2">Everything You Need to <span>Grow in the Digital World</span></h2>
+        <p class="tps-text-lead">“Your website is more than just an online presence. Your digital systems should attract visitors, generate leads, save time, and help your business grow.”</p>
+      </div>
+
+      <div class="tps-value-grid">
+        <div class="tps-value-card tps-reveal">
+          <div class="tps-value-num">01</div>
+          <h3>Build</h3>
+          <p>Professional websites and digital experiences designed around your business.</p>
+        </div>
+        <div class="tps-value-card tps-reveal" style="transition-delay: 0.1s;">
+          <div class="tps-value-num">02</div>
+          <h3>Optimize</h3>
+          <p>SEO and digital marketing strategies designed to improve online visibility.</p>
+        </div>
+        <div class="tps-value-card tps-reveal" style="transition-delay: 0.2s;">
+          <div class="tps-value-num">03</div>
+          <h3>Automate</h3>
+          <p>Automate repetitive processes and reduce manual work.</p>
+        </div>
+        <div class="tps-value-card tps-reveal" style="transition-delay: 0.3s;">
+          <div class="tps-value-num">04</div>
+          <h3>Scale</h3>
+          <p>Use AI, automation, and smart digital systems to create opportunities for growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     4. SERVICES SECTION
+     ========================================================== -->
+  <section class="tps-full-section tps-services">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal">
+        <div class="tps-section-label">Our Services</div>
+        <h2 class="tps-heading-2">Digital Solutions Built for <span>Growth</span></h2>
+        <p class="tps-text-lead">“From your first website to advanced AI-powered workflows, we provide the digital services your business needs to establish, improve, and scale its online presence.”</p>
+      </div>
+
+      <div class="tps-services-grid">
+        <!-- Service 01 -->
+        <div class="tps-service-card tps-reveal">
+          <div>
+            <div class="tps-service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <h3>Web Designing</h3>
+            <p>“Modern, responsive, and user-focused websites designed to represent your brand professionally and turn visitors into potential customers.”</p>
+            <ul class="tps-service-features">
+              <li>Business Website Design</li>
+              <li>Landing Pages</li>
+              <li>Responsive Design</li>
+              <li>UI/UX Design</li>
+              <li>WordPress Design</li>
+            </ul>
+          </div>
+          <a href="/web-designing" class="tps-service-link">Explore Web Design <span>→</span></a>
+        </div>
+
+        <!-- Service 02 -->
+        <div class="tps-service-card tps-reveal" style="transition-delay: 0.1s;">
+          <div>
+            <div class="tps-service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <h3>Web Development</h3>
+            <p>“We develop fast, functional, and scalable websites using modern web technologies and reliable development practices.”</p>
+            <ul class="tps-service-features">
+              <li>WordPress Development</li>
+              <li>Custom Development</li>
+              <li>Dynamic Websites</li>
+              <li>Integrations</li>
+              <li>Maintenance</li>
+            </ul>
+          </div>
+          <a href="/web-development" class="tps-service-link">Explore Development <span>→</span></a>
+        </div>
+
+        <!-- Service 03 -->
+        <div class="tps-service-card tps-reveal" style="transition-delay: 0.2s;">
+          <div>
+            <div class="tps-service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <h3>SEO</h3>
+            <p>“Improve your search visibility and help potential customers find your business through strategic, data-driven SEO.”</p>
+            <ul class="tps-service-features">
+              <li>Technical SEO</li>
+              <li>On-Page SEO</li>
+              <li>Local SEO</li>
+              <li>Keyword Research</li>
+              <li>SEO Audits</li>
+            </ul>
+          </div>
+          <a href="/seo" class="tps-service-link">Improve My SEO <span>→</span></a>
+        </div>
+
+        <!-- Service 04 -->
+        <div class="tps-service-card tps-reveal">
+          <div>
+            <div class="tps-service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <h3>Digital Marketing</h3>
+            <p>“Reach the right audience through targeted digital marketing strategies designed to increase visibility, engagement, leads, and conversions.”</p>
+            <ul class="tps-service-features">
+              <li>Social Media Marketing</li>
+              <li>Google Ads</li>
+              <li>Meta Ads</li>
+              <li>Content Marketing</li>
+              <li>Lead Generation</li>
+            </ul>
+          </div>
+          <a href="/digital-marketing" class="tps-service-link">Grow My Business <span>→</span></a>
+        </div>
+
+        <!-- Service 05 -->
+        <div class="tps-service-card tps-reveal" style="transition-delay: 0.1s;">
+          <div>
+            <div class="tps-service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c0.926 0 1.648-.746 1.648-1.688 0-0.437-0.18-0.835-0.437-1.125-0.29-0.289-0.438-0.652-0.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.55-2.5 5.55-5.55C22 6.5 17.5 2 12 2z"></path></svg>
+            </div>
+            <h3>Graphics Designing</h3>
+            <p>“Create a strong visual identity with professional graphics that communicate your brand clearly across digital platforms.”</p>
+            <ul class="tps-service-features">
+              <li>Logo Design</li>
+              <li>Social Media Graphics</li>
+              <li>Advertising Creatives</li>
+              <li>Website Graphics</li>
+              <li>Promotional Banners</li>
+            </ul>
+          </div>
+          <a href="/graphics-designing" class="tps-service-link">Create My Design <span>→</span></a>
+        </div>
+
+        <!-- Service 06 -->
+        <div class="tps-service-card tps-reveal" style="transition-delay: 0.2s;">
+          <div>
+            <div class="tps-service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path></svg>
+            </div>
+            <h3>AI Automation</h3>
+            <p>“Automate repetitive tasks and connect your business tools with intelligent workflows that save time and reduce manual work.”</p>
+            <ul class="tps-service-features">
+              <li>Business Process Automation</li>
+              <li>Lead Automation</li>
+              <li>Email Automation</li>
+              <li>API Integrations</li>
+              <li>AI-Powered Workflows</li>
+            </ul>
+          </div>
+          <a href="/ai-automation" class="tps-service-link">Automate My Business <span>→</span></a>
+        </div>
+
+        <!-- Service 07 -->
+        <div class="tps-service-card tps-reveal" style="grid-column: 1 / -1; max-width: 500px; margin: 0 auto;">
+          <div>
+            <div class="tps-service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 7.54 16.6l1.46 2.4-2.4-1.46A10 10 0 1 1 12 2z"></path></svg>
+            </div>
+            <h3>AI Agent</h3>
+            <p>“Build intelligent AI agents that can understand information, perform tasks, interact with customers, and support business operations.”</p>
+            <ul class="tps-service-features">
+              <li>AI Customer Support</li>
+              <li>AI Lead Qualification</li>
+              <li>AI Sales Assistants</li>
+              <li>AI Knowledge Assistants</li>
+              <li>Business AI Agents</li>
+            </ul>
+          </div>
+          <a href="/ai-agent" class="tps-service-link">Explore AI Agents <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     5. WHY TAMPRAMSCALE
+     ========================================================== -->
+  <section class="tps-full-section tps-why-us">
+    <div class="tps-container">
+      <div class="tps-why-grid">
+        <div class="tps-why-visual tps-reveal">
+          <div class="tps-why-visual-grid"></div>
+          <div class="tps-why-center-badge">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#66FF00" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            <h4>TamPramScale Engine</h4>
+          </div>
+        </div>
+
+        <div class="tps-reveal">
+          <div class="tps-section-label">Why TamPramScale</div>
+          <h2 class="tps-heading-2">Technology with a <span>Purpose</span></h2>
+          <p class="tps-text-lead">“We don't believe in adding technology just for the sake of technology. Every website, marketing strategy, automation, and AI solution should solve a real business problem.”</p>
+
+          <div class="tps-why-benefits-list">
+            <div class="tps-why-benefit-item">
+              <div class="tps-why-benefit-icon">✓</div>
+              <div class="tps-why-benefit-text">
+                <h4>Business-Focused Solutions</h4>
+                <p>“We focus on your business goals, customers, and processes.”</p>
+              </div>
+            </div>
+            <div class="tps-why-benefit-item">
+              <div class="tps-why-benefit-icon">✓</div>
+              <div class="tps-why-benefit-text">
+                <h4>Modern Technology</h4>
+                <p>“We use modern web, marketing, automation, and AI technologies.”</p>
+              </div>
+            </div>
+            <div class="tps-why-benefit-item">
+              <div class="tps-why-benefit-icon">✓</div>
+              <div class="tps-why-benefit-text">
+                <h4>Scalable Solutions</h4>
+                <p>“Your digital system should be able to grow with your business.”</p>
+              </div>
+            </div>
+            <div class="tps-why-benefit-item">
+              <div class="tps-why-benefit-icon">✓</div>
+              <div class="tps-why-benefit-text">
+                <h4>One Digital Partner</h4>
+                <p>“Website, SEO, marketing, design, automation, and AI solutions under one roof.”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     6. ABOUT / BRAND INTRO
+     ========================================================== -->
+  <section class="tps-full-section tps-about-intro">
+    <div class="tps-container">
+      <div class="tps-about-content-wrapper tps-reveal">
+        <div class="tps-section-label">About TamPramScale</div>
+        <h2 class="tps-heading-2">We Build Digital Systems That <span>Move Businesses Forward</span></h2>
+        <p class="tps-text-lead">“TamPramScale is a digital growth agency focused on helping businesses build a stronger online presence and adopt smarter technology.”</p>
+        <p class="tps-text-lead" style="margin-bottom: 0;">“We combine web design, web development, SEO, digital marketing, graphics design, AI automation, and AI agents to create practical solutions for modern businesses.”</p>
+
+        <div class="tps-about-highlight-box">
+          “Make your business more visible, more efficient, and ready to scale.”
+        </div>
+
+        <a href="/about-us" class="tps-btn tps-btn-primary">
+          Learn More About Us 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     7. OUR PROCESS TIMELINE
+     ========================================================== -->
+  <section class="tps-full-section tps-process">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <div class="tps-section-label">Our Process</div>
+        <h2 class="tps-heading-2">From Idea to <span>Digital Growth</span></h2>
+      </div>
+
+      <div class="tps-process-grid">
+        <div class="tps-process-card tps-reveal">
+          <div class="tps-process-step">01</div>
+          <h3>Discover</h3>
+          <p>Understand the business, goals, audience, and challenges.</p>
+        </div>
+        <div class="tps-process-card tps-reveal" style="transition-delay: 0.1s;">
+          <div class="tps-process-step">02</div>
+          <h3>Plan</h3>
+          <p>Create a practical strategy based on requirements and objectives.</p>
+        </div>
+        <div class="tps-process-card tps-reveal" style="transition-delay: 0.2s;">
+          <div class="tps-process-step">03</div>
+          <h3>Build</h3>
+          <p>Develop the website, marketing assets, automation workflow, or AI solution.</p>
+        </div>
+        <div class="tps-process-card tps-reveal" style="transition-delay: 0.3s;">
+          <div class="tps-process-step">04</div>
+          <h3>Optimize</h3>
+          <p>Test, analyze, and improve the solution.</p>
+        </div>
+        <div class="tps-process-card tps-reveal" style="transition-delay: 0.4s;">
+          <div class="tps-process-step">05</div>
+          <h3>Scale</h3>
+          <p>Identify new opportunities for improvement and expansion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     8. AI SECTION
+     ========================================================== -->
+  <section class="tps-full-section tps-ai-section">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <div class="tps-section-label">The Future of Business is Intelligent</div>
+        <h2 class="tps-heading-2">Work <span>Smarter With AI</span></h2>
+        <p class="tps-text-lead" style="max-width: 900px; margin-left: auto; margin-right: auto;">“AI can do more than generate text or images. We help businesses use AI to automate repetitive processes, organize information, handle customer interactions, qualify leads, and support everyday business operations.”</p>
+      </div>
+
+      <div class="tps-ai-grid">
+        <div class="tps-ai-card tps-reveal">
+          <h3>AI Automation</h3>
+          <p>“Connect your tools and automate repetitive workflows.”</p>
+        </div>
+        <div class="tps-ai-card tps-reveal" style="transition-delay: 0.1s;">
+          <h3>AI Agents</h3>
+          <p>“Deploy intelligent agents that can understand tasks and take actions according to defined business processes.”</p>
+        </div>
+        <div class="tps-ai-card tps-reveal" style="transition-delay: 0.2s;">
+          <h3>AI-Powered Business Systems</h3>
+          <p>“Combine websites, automation, APIs, data, and AI into connected digital workflows.”</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 50px;" class="tps-reveal">
+        <a href="/ai-automation" class="tps-btn tps-btn-primary">
+          Discover AI Solutions 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     9. WEBSITE + SEO SECTION
+     ========================================================== -->
+  <section class="tps-full-section tps-web-seo">
+    <div class="tps-container">
+      <div class="tps-web-seo-grid">
+        <div class="tps-reveal">
+          <div class="tps-section-label">High-Performance Web & SEO</div>
+          <h2 class="tps-heading-2">Your Website Should <span>Work for Your Business</span></h2>
+          <p class="tps-text-lead">“A professional website should do more than look good. It should communicate your value, provide a smooth user experience, perform well on different devices, and be structured so search engines can understand your content.”</p>
+
+          <div class="tps-checklist">
+            <div class="tps-check-item"><div class="tps-check-icon">✓</div> Modern responsive design</div>
+            <div class="tps-check-item"><div class="tps-check-icon">✓</div> Mobile-friendly experience</div>
+            <div class="tps-check-item"><div class="tps-check-icon">✓</div> SEO-friendly structure</div>
+            <div class="tps-check-item"><div class="tps-check-icon">✓</div> Clear calls-to-action</div>
+            <div class="tps-check-item"><div class="tps-check-icon">✓</div> Fast and functional development</div>
+            <div class="tps-check-item"><div class="tps-check-icon">✓</div> Lead-generation focused</div>
+          </div>
+
+          <a href="/web-designing" class="tps-btn tps-btn-primary" style="margin-top: 20px;">
+            Build My Website 
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+
+        <div class="tps-reveal">
+          <div class="tps-browser-mockup">
+            <div class="tps-browser-header">
+              <div class="tps-dashboard-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="tps-browser-address">https://tampsramscale.com</div>
+            </div>
+            <div class="tps-browser-body">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#66FF00" stroke-width="1.5" style="margin-bottom: 20px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; color: var(--tps-white);">High-Converting Digital Presence</h3>
+              <p style="color: var(--tps-gray-text); font-size: 0.9rem; margin: 0;">Optimized for speed, SEO, and maximum client conversions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     10. DIGITAL GROWTH ECOSYSTEM
+     ========================================================== -->
+  <section class="tps-full-section tps-ecosystem">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <div class="tps-section-label">Growth Engine</div>
+        <h2 class="tps-heading-2">Turn Your Digital Presence Into a <span>Growth Engine</span></h2>
+      </div>
+
+      <div class="tps-eco-flow tps-reveal">
+        <div class="tps-eco-node">Website</div>
+        <div class="tps-eco-arrow">↓</div>
+        <div class="tps-eco-node">SEO & Content</div>
+        <div class="tps-eco-arrow">↓</div>
+        <div class="tps-eco-node">Traffic</div>
+        <div class="tps-eco-arrow">↓</div>
+        <div class="tps-eco-node">Leads</div>
+        <div class="tps-eco-arrow">↓</div>
+        <div class="tps-eco-node">Automation</div>
+        <div class="tps-eco-arrow">↓</div>
+        <div class="tps-eco-node">Customers</div>
+        <div class="tps-eco-arrow">↓</div>
+        <div class="tps-eco-node" style="border-color: var(--tps-neon); background: rgba(102, 255, 0, 0.05); color: var(--tps-neon);">Growth</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     11. WHO WE HELP
+     ========================================================== -->
+  <section class="tps-full-section tps-who-we-help">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal">
+        <div class="tps-section-label">Who We Work With</div>
+        <h2 class="tps-heading-2">Digital Solutions for <span>Modern Businesses</span></h2>
+      </div>
+
+      <div class="tps-who-grid">
+        <div class="tps-who-card tps-reveal">
+          <h3>Small Businesses</h3>
+          <p>“Build a professional online presence and start generating opportunities online.”</p>
+        </div>
+        <div class="tps-who-card tps-reveal" style="transition-delay: 0.1s;">
+          <h3>Startups</h3>
+          <p>“Create a strong digital foundation and use technology efficiently from the beginning.”</p>
+        </div>
+        <div class="tps-who-card tps-reveal" style="transition-delay: 0.2s;">
+          <h3>Service Businesses</h3>
+          <p>“Generate more enquiries through websites, local SEO, marketing, and automation.”</p>
+        </div>
+        <div class="tps-who-card tps-reveal">
+          <h3>Growing Businesses</h3>
+          <p>“Improve existing digital systems and introduce automation and AI.”</p>
+        </div>
+        <div class="tps-who-card tps-reveal" style="transition-delay: 0.1s;">
+          <h3>Professionals & Agencies</h3>
+          <p>“Strengthen your online presence with websites, graphics, SEO, and digital solutions.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     12. BENEFITS
+     ========================================================== -->
+  <section class="tps-full-section tps-benefits">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <div class="tps-section-label">Agency Impact</div>
+        <h2 class="tps-heading-2">What Digital Solutions Can Help <span>Your Business Achieve</span></h2>
+      </div>
+
+      <div class="tps-benefits-grid">
+        <div class="tps-benefit-card tps-reveal">
+          <div class="tps-benefit-icon">📈</div>
+          <h4>Increase Visibility</h4>
+        </div>
+        <div class="tps-benefit-card tps-reveal" style="transition-delay: 0.1s;">
+          <div class="tps-benefit-icon">🎯</div>
+          <h4>Generate More Leads</h4>
+        </div>
+        <div class="tps-benefit-card tps-reveal" style="transition-delay: 0.2s;">
+          <div class="tps-benefit-icon">⏱️</div>
+          <h4>Save Time</h4>
+        </div>
+        <div class="tps-benefit-card tps-reveal">
+          <div class="tps-benefit-icon">⚡</div>
+          <h4>Improve Efficiency</h4>
+        </div>
+        <div class="tps-benefit-card tps-reveal" style="transition-delay: 0.1s;">
+          <div class="tps-benefit-icon">🛡️</div>
+          <h4>Strengthen Your Brand</h4>
+        </div>
+        <div class="tps-benefit-card tps-reveal" style="transition-delay: 0.2s;">
+          <div class="tps-benefit-icon">🚀</div>
+          <h4>Prepare for the Future</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     13. TECHNOLOGY
+     ========================================================== -->
+  <section class="tps-full-section tps-tech">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <div class="tps-section-label">Tech Stack</div>
+        <h2 class="tps-heading-2">Built With <span>Modern Technology</span></h2>
+        <p class="tps-text-lead" style="max-width: 800px; margin-left: auto; margin-right: auto;">“We work with modern website technologies, marketing platforms, APIs, automation tools, and AI technologies to create solutions based on each project's requirements.”</p>
+      </div>
+
+      <div class="tps-tech-grid tps-reveal">
+        <div class="tps-tech-card">WordPress</div>
+        <div class="tps-tech-card">Elementor</div>
+        <div class="tps-tech-card">HTML5 & CSS3</div>
+        <div class="tps-tech-card">JavaScript</div>
+        <div class="tps-tech-card">PHP</div>
+        <div class="tps-tech-card">Google Analytics</div>
+        <div class="tps-tech-card">APIs & Webhooks</div>
+        <div class="tps-tech-card">AI Technologies</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     14. FAQ
+     ========================================================== -->
+  <section class="tps-full-section tps-faq">
+    <div class="tps-container">
+      <div class="tps-section-header tps-reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+        <div class="tps-section-label">Frequently Asked Questions</div>
+        <h2 class="tps-heading-2">Got Questions? <span>We've Got Answers.</span></h2>
+      </div>
+
+      <div class="tps-faq-wrapper tps-reveal">
+        <!-- FAQ 1 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>What services does TamPramScale provide?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“We provide web design, web development, SEO, digital marketing, graphics design, AI automation, and AI agent solutions.”</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>Do you build WordPress websites?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“Yes. We can design, develop, customize, optimize, and maintain WordPress websites according to business requirements.”</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>Can you improve an existing website?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“Yes. We can work on design, performance, SEO, functionality, content structure, and conversion-focused improvements.”</p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>What is AI automation?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“AI automation combines workflow automation with artificial intelligence to perform tasks that would otherwise require manual work.”</p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>What is an AI agent?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“An AI agent is a software system that can understand a defined objective, process information, and perform tasks or interact with other systems according to its configuration.”</p>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>Can you automate business processes?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“Yes. We can analyze repetitive processes and identify opportunities for workflow automation, integrations, and AI-powered systems.”</p>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>Do you provide SEO for local businesses?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“Yes. SEO solutions can include technical SEO, on-page optimization, local SEO, keyword research, content strategy, and Google Business Profile optimization.”</p>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="tps-faq-item">
+          <button class="tps-faq-question" aria-expanded="false">
+            <span>How do I get started?</span>
+            <div class="tps-faq-icon">+</div>
+          </button>
+          <div class="tps-faq-answer">
+            <p>“Contact us and tell us about your business, challenges, and goals. We can then discuss the appropriate digital solution.”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     15. FINAL CTA SECTION
+     ========================================================== -->
+  <section class="tps-full-section tps-final-cta">
+    <div class="tps-container">
+      <div class="tps-final-cta-box tps-reveal">
+        <div class="tps-section-label" style="display: inline-flex;">Ready to Grow?</div>
+        <h2 class="tps-heading-2" style="margin-top: 10px;">Let's Build Something That <span>Moves Your Business Forward.</span></h2>
+        <p class="tps-text-lead" style="max-width: 800px; margin: 0 auto 40px auto;">“Whether you need a new website, better SEO, digital marketing, professional graphics, business automation, or an AI-powered solution, we're ready to help you turn your ideas into practical digital solutions.”</p>
+        <div class="tps-hero-btns" style="justify-content: center;">
+          <a href="/contact" class="tps-btn tps-btn-primary">
+            Start Your Project 
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="/contact" class="tps-btn tps-btn-secondary">
+            Talk to Us 
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     16. CONTACT TEASER
+     ========================================================== -->
+  <section class="tps-full-section tps-contact-teaser">
+    <div class="tps-container">
+      <div class="tps-reveal" style="max-width: 800px; margin: 0 auto;">
+        <h2 class="tps-heading-2">Let's Talk About Your Project</h2>
+        <p class="tps-text-lead">“Tell us what you are trying to achieve, what challenges you're facing, and what kind of digital solution you need.”</p>
+        <a href="/contact" class="tps-btn tps-btn-primary" style="margin-top: 10px;">
+          Start a Conversation 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+     17. FLOATING WHATSAPP CHATBOT
+     ========================================================== -->
+  <div class="tps-whatsapp-widget">
+    <div class="tps-wa-tooltip" id="tpsWaTooltip">Need help? Chat with us on WhatsApp</div>
+    <a href="https://wa.me/919002872727?text=Hello%20TamPramScale,%20I%20would%20like%20to%20know%20more%20about%20your%20digital%20services." 
+       class="tps-wa-btn" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Chat on WhatsApp">
+      <div class="tps-wa-badge"></div>
+      <svg viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.612-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- JavaScript Behavior Implementation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Scroll Reveal Intersection Observer
+      const revealElements = document.querySelectorAll('.tps-reveal');
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // 2. FAQ Accordion Functionality
+      const faqItems = document.querySelectorAll('.tps-faq-item');
+      faqItems.forEach(item => {
+        const btn = item.querySelector('.tps-faq-question');
+        btn.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          
+          // Close all items
+          faqItems.forEach(otherItem => {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.tps-faq-question').setAttribute('aria-expanded', 'false');
+          });
+
+          // Toggle current item
+          if (!isActive) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      // 3. WhatsApp Tooltip Behavior
+      const waTooltip = document.getElementById('tpsWaTooltip');
+      const waBtn = document.querySelector('.tps-wa-btn');
+
+      // Show tooltip after 3 seconds
+      setTimeout(() => {
+        waTooltip.classList.add('show');
+        setTimeout(() => {
+          waTooltip.classList.remove('show');
+        }, 5000);
+      }, 3000);
+
+      // Show on hover
+      waBtn.addEventListener('mouseenter', () => {
+        waTooltip.classList.add('show');
+      });
+      waBtn.addEventListener('mouseleave', () => {
+        waTooltip.classList.remove('show');
+      });
+    });
+  </script>
+</div>
+<!-- HOME PAGE END -->
+
+<!-- GLOBAL FOOTER PROVIDED SEPARATELY -->
